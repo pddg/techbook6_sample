@@ -34,4 +34,4 @@ class User(AbstractBaseUser, PermissionsMixin):
     # ユーザ名として使うフィールドを明示
     USERNAME_FIELD = 'username'
     # ユーザ作成時の必須項目
-    REQUIRED_FIELDS = ('email', 'password')
+    REQUIRED_FIELDS = ('email',)
