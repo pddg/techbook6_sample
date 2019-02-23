@@ -5,14 +5,14 @@ from django.db import models
 class UserManager(BaseUserManager):
     """ユーザモデル操作用のマネージャ"""
 
-    def create_user(username: 'str', email: 'str', password: 'str', **extra_fields) -> 'User':
+    def create_user(self, username: 'str', email: 'str', password: 'str', **extra_fields) -> 'User':
         """ユーザを作成するメソッド"""
         user = self.model(username=username, email=email, **extra_fields)
         user.set_password(password)
         user.save()
         return user
 
-    def create_superuser(username: 'str', email: 'str', password: 'str', **extra_fields):
+    def create_superuser(self, username: 'str', email: 'str', password: 'str', **extra_fields):
         """管理ユーザを作成するメソッド"""
         admin_attrs = {"is_superuser": True, "is_staff": True, "is_active": True}
         for key, val in admin_attrs.items():
