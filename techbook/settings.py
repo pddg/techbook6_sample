@@ -112,6 +112,9 @@ DJOSER = {
     'ACTIVATION_URL': 'activate/#/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': True,
     'SEND_CONFIRMATION_EMAIL': True,
+    'SERIALIZERS': {
+        'current_user': 'users.serializers.CurrentUserSerializer',
+    }
 }
 
 REST_FRAMEWORK = {
