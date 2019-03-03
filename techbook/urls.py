@@ -17,8 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from djoser.urls import base, jwt
 
+from users.views import MyTokenObtainPairView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(base)),
-    path('auth/', include(jwt))
+    # 先に登録した方が優先される
+    path('auth/jwt/create/', MyTokenObtainPairView.as_view()),
+    path('auth/', include(jwt)),
 ]
