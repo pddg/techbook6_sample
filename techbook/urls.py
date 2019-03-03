@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from djoser.urls import base, jwt
 
-from users.views import MyTokenObtainPairView
+from users.views import MyTokenObtainPairView, NoAuthRequiredView, AuthRequiredView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +25,8 @@ urlpatterns = [
     # 先に登録した方が優先される
     path('auth/jwt/create/', MyTokenObtainPairView.as_view()),
     path('auth/', include(jwt)),
+    # 認証が不要なView
+    path('hello/', NoAuthRequiredView.as_view()),
+    # 認証が必要なView
+    path('hello_with_auth/', AuthRequiredView.as_view())
 ]
