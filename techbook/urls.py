@@ -14,19 +14,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, re_path, include
 from djoser.urls import base, jwt
 
-from users.views import MyTokenObtainPairView, NoAuthRequiredView, AuthRequiredView
+from users import urls as user_urls
+from users.views import MyTokenObtainPairView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(base)),
-    # 先に登録した方が優先される
-    path('auth/jwt/create/', MyTokenObtainPairView.as_view()),
+    path('', include(user_urls)),
+    path('auth/jwt/create/', MyTokenObtainPairView.as_view(), name='jwt-create'),
     path('auth/', include(jwt)),
-    # 認証が不要なView
-    path('hello/', NoAuthRequiredView.as_view()),
-    # 認証が必要なView
-    path('hello_with_auth/', AuthRequiredView.as_view())
 ]
