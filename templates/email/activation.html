@@ -1,0 +1,22 @@
+{# メールの件名 #}
+{% block subject %}
+アカウント有効化 - techbook
+{% endblock subject %}
+
+{# テキストメールの本文 #}
+{% block text_body %}
+ようこそ！
+アカウントを有効化するには下記のURLへアクセスしてください！
+{{ protocol }}://{{ domain }}/{{ url|safe }}
+---
+techbook サンプルアプリケーション作成チーム
+{% endblock text_body %}
+
+{# HTMLメールの本文 #}
+{% block html_body %}
+<h3>ようこそ！</h3>
+<p>アカウントを有効化するには下記のURLへアクセスしてください！</p>
+<p><a href="{{ protocol }}://{{ domain }}/{{ url|safe }}">{{ protocol }}://{{ domain }}/{{ url|safe }}</a></p>
+<hr>
+<p>techbook サンプルアプリケーション作成チーム</p>
+{% endblock html_body %}
