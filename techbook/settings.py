@@ -116,6 +116,9 @@ DJOSER = {
     'SEND_CONFIRMATION_EMAIL': True,
     'SERIALIZERS': {
         'current_user': 'users.serializers.CurrentUserSerializer',
+    },
+    'EMAIL': {
+        'activation': 'users.email.MyActivationEmail',
     }
 }
 
